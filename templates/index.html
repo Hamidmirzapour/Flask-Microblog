@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+    <title>Flask Microblog</title>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="navbar__brand">
+        <img
+          class="navbar__logo"
+          src="static/flask_microblog-logo.svg"
+          alt="Flask Microblog Logo"
+        />
+        <h1>Flask Microblog</h1>
+      </div>
+      <navbar class="navbar__navigation">
+        <ul>
+          <li><a href="#">Recent</a></li>
+          <li><a href="#">Calendar</a></li>
+        </ul>
+      </navbar>
+    </header>
+    <main>
+      <section id="blog__enter">
+        <h2>Add New Entry</h2>
+        <form method="post">
+          <label for="content">Entry Contents:</label>
+          <textarea name="content" placeholder="Enter your content"> </textarea>
+          <input class="form__submit" type="submit" value="Submit" />
+        </form>
+      </section>
+      <section id="blog__part">
+        <h2>Recent Posts</h2>
+        {% for entry in entries %}
+        <article>
+          <div class="article__header">
+            <h3>{{ entry[0] | truncate(30, true) }}</h3>
+            <div><time datetime="{{ entry[1] }}">{{ entry[2] }}</time></div>
+          </div>
+          <div class="article__content">{{ entry[0] }}</div>
+        </article>
+        {% endfor %}
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer__content">
+        <div class="left__column">
+          <p>Make by Hamid Mirzapour</p>
+          <p>Check out my other projects</p>
+        </div>
+        <div class="right__column">
+          <div class="left__part">
+            <ul>
+              <li class="footer__item"><a href="#">Recent</a></li>
+              <li class="footer__item"><a href="#">Calendar</a></li>
+            </ul>
+          </div>
+          <div class="right__part">
+            <ul>
+              <li class="footer__item"><a href="#">About</a></li>
+              <li class="footer__item"><a href="#">How this was made</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
